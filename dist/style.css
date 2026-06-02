@@ -30,7 +30,13 @@ body {
   background-position: center !important;
 }
 
+#game.has-photo {
+  background-size: cover !important;
+  background-position: center !important;
+}
+
 #title {
+  display: none !important;
   position: absolute !important;
   top: max(22px, env(safe-area-inset-top)) !important;
   left: 20px !important;
@@ -43,6 +49,7 @@ body {
 }
 
 #status {
+  display: none !important;
   position: absolute !important;
   top: calc(max(22px, env(safe-area-inset-top)) + 58px) !important;
   right: 16px !important;
@@ -55,19 +62,24 @@ body {
 }
 
 #musicControl {
+  display: block !important;
   position: absolute !important;
-  top: max(18px, env(safe-area-inset-top)) !important;
+  top: auto !important;
+  bottom: calc(232px + env(safe-area-inset-bottom)) !important;
   right: 16px !important;
   z-index: 10 !important;
 }
 
 #musicControl button {
+  display: block !important;
   width: 48px !important;
   height: 48px !important;
   min-height: 48px !important;
   padding: 0 !important;
   border-radius: 50% !important;
   font-size: 20px !important;
+  line-height: 1 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3) !important;
 }
 
 #character {
@@ -81,51 +93,122 @@ body {
   z-index: 5 !important;
 }
 
-#dialogueBox {
+#character.is-photo {
   width: 100% !important;
-  min-height: 300px !important;
-  background: rgba(31, 16, 7, 0.94) !important;
-  border-top: 3px solid #d4af37 !important;
-  padding: 22px 20px calc(26px + env(safe-area-inset-bottom)) !important;
+  height: 100% !important;
+  inset: 0 !important;
+  transform: none !important;
+  border-radius: 0 !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  box-shadow: none !important;
+  font-size: 0 !important;
+  text-shadow: none !important;
+}
+
+#dialogueBox {
+  width: calc(100% - 28px) !important;
+  min-height: 176px !important;
+  margin: 0 14px calc(58px + env(safe-area-inset-bottom)) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  border-radius: 8px !important;
+  padding: 18px 18px 20px !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24) !important;
   z-index: 20 !important;
 }
 
 #speaker {
-  color: #ffd86b !important;
+  color: #8b6620 !important;
   font-size: 22px !important;
   font-weight: bold !important;
-  margin-bottom: 8px !important;
+  margin-bottom: 10px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid rgba(139, 102, 32, 0.22) !important;
+}
+
+#speaker.is-hidden {
+  display: none !important;
 }
 
 #text {
+  color: #333 !important;
   font-size: 20px !important;
   line-height: 1.7 !important;
-  min-height: 118px !important;
+  min-height: 72px !important;
 }
 
 #choices {
-  margin-top: 12px !important;
+  position: absolute !important;
+  left: 74px !important;
+  right: 0 !important;
+  top: 39% !important;
+  transform: translateY(-50%) !important;
+  margin-top: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 28px !important;
+  z-index: 25 !important;
+  pointer-events: none !important;
 }
 
-button {
+#choices button {
   width: 100% !important;
-  min-height: 48px !important;
-  background: #d4af37 !important;
-  color: #2b1607 !important;
-  border: none !important;
-  padding: 13px 16px !important;
+  min-height: 56px !important;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 214, 0.72)) !important;
+  color: #6a6259 !important;
+  border: 1px solid rgba(255, 255, 255, 0.74) !important;
+  padding: 13px 46px 13px 24px !important;
   margin: 0 !important;
-  border-radius: 8px !important;
-  font-size: 17px !important;
+  border-radius: 4px 0 0 4px !important;
+  font-size: 20px !important;
   font-weight: bold !important;
   cursor: pointer !important;
+  text-align: left !important;
+  position: relative !important;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18) !important;
+  pointer-events: auto !important;
 }
 
-button:hover {
-  background: #ffe28a !important;
+#choices button::before {
+  content: "✦" !important;
+  position: absolute !important;
+  left: -47px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 44px !important;
+  color: #fff4b6 !important;
+  font-size: 30px !important;
+  line-height: 1 !important;
+  text-align: center !important;
+  text-shadow: 0 0 10px rgba(255, 240, 150, 0.88) !important;
+}
+
+#choices button:nth-child(2)::before {
+  content: "☾" !important;
+  color: #f7f4ff !important;
+  text-shadow: 0 0 10px rgba(190, 196, 255, 0.88) !important;
+}
+
+#choices button:nth-child(2) {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(232, 232, 255, 0.72)) !important;
+}
+
+#choices button::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 12px auto auto !important;
+  width: 72px !important;
+  height: 100% !important;
+  opacity: 0.22 !important;
+  background-image: radial-gradient(circle, rgba(199, 181, 111, 0.72) 1.5px, transparent 1.6px) !important;
+  background-size: 12px 12px !important;
+  pointer-events: none !important;
+}
+
+#choices button:hover {
+  filter: brightness(1.04) !important;
 }
 
 @media (max-height: 740px) {
@@ -134,19 +217,34 @@ button:hover {
     font-size: 112px !important;
   }
 
+  #character.is-photo {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   #dialogueBox {
-    min-height: 250px !important;
-    padding: 18px 18px calc(20px + env(safe-area-inset-bottom)) !important;
+    min-height: 160px !important;
+    padding: 16px 16px 16px !important;
+  }
+
+  #musicControl {
+    bottom: calc(214px + env(safe-area-inset-bottom)) !important;
   }
 
   #text {
     font-size: 18px !important;
-    min-height: 88px !important;
+    min-height: 60px !important;
   }
 
-  button {
-    min-height: 46px !important;
-    padding: 11px 14px !important;
-    font-size: 16px !important;
+  #choices {
+    left: 70px !important;
+    top: 39% !important;
+    gap: 24px !important;
+  }
+
+  #choices button {
+    min-height: 52px !important;
+    padding: 11px 42px 11px 20px !important;
+    font-size: 18px !important;
   }
 }

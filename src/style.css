@@ -34,7 +34,13 @@ body {
   background-position: center;
 }
 
+#game.has-photo {
+  background-size: cover;
+  background-position: center;
+}
+
 #title {
+  display: none;
   position: absolute;
   top: max(22px, env(safe-area-inset-top));
   left: 20px;
@@ -47,6 +53,7 @@ body {
 }
 
 #status {
+  display: none;
   position: absolute;
   top: calc(max(22px, env(safe-area-inset-top)) + 58px);
   right: 16px;
@@ -59,19 +66,24 @@ body {
 }
 
 #musicControl {
+  display: block;
   position: absolute;
-  top: max(18px, env(safe-area-inset-top));
+  top: auto;
+  bottom: calc(232px + env(safe-area-inset-bottom));
   right: 16px;
   z-index: 10;
 }
 
 #musicControl button {
+  display: block;
   width: 48px;
   height: 48px;
   min-height: 48px;
   padding: 0;
   border-radius: 50%;
   font-size: 20px;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 #character {
@@ -84,50 +96,121 @@ body {
   z-index: 5;
 }
 
-#dialogueBox {
+#character.is-photo {
   width: 100%;
-  min-height: 300px;
-  background: rgba(31, 16, 7, 0.94);
-  border-top: 3px solid #d4af37;
-  padding: 22px 20px calc(26px + env(safe-area-inset-bottom));
+  height: 100%;
+  inset: 0;
+  transform: none;
+  border-radius: 0;
+  background-size: cover;
+  background-position: center top;
+  box-shadow: none;
+  font-size: 0;
+  text-shadow: none;
+}
+
+#dialogueBox {
+  width: calc(100% - 28px);
+  min-height: 176px;
+  margin: 0 14px calc(58px + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 8px;
+  padding: 18px 18px 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
   z-index: 20;
 }
 
 #speaker {
-  color: #ffd86b;
+  color: #8b6620;
   font-size: 22px;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(139, 102, 32, 0.22);
+}
+
+#speaker.is-hidden {
+  display: none;
 }
 
 #text {
+  color: #333;
   font-size: 20px;
   line-height: 1.7;
-  min-height: 118px;
+  min-height: 72px;
 }
 
 #choices {
-  margin-top: 12px;
+  position: absolute;
+  left: 74px;
+  right: 0;
+  top: 39%;
+  transform: translateY(-50%);
+  margin-top: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 28px;
+  z-index: 25;
+  pointer-events: none;
 }
 
-button {
+#choices button {
   width: 100%;
-  min-height: 48px;
-  background: #d4af37;
-  color: #2b1607;
-  border: none;
-  padding: 13px 16px;
-  border-radius: 8px;
-  font-size: 17px;
+  min-height: 56px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(255, 248, 214, 0.72));
+  color: #6a6259;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  padding: 13px 46px 13px 24px;
+  border-radius: 4px 0 0 4px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
 }
 
-button:hover {
-  background: #ffe28a;
+#choices button::before {
+  content: "✦";
+  position: absolute;
+  left: -47px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  color: #fff4b6;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(255, 240, 150, 0.88);
+}
+
+#choices button:nth-child(2)::before {
+  content: "☾";
+  color: #f7f4ff;
+  text-shadow: 0 0 10px rgba(190, 196, 255, 0.88);
+}
+
+#choices button:nth-child(2) {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.94), rgba(232, 232, 255, 0.72));
+}
+
+#choices button::after {
+  content: "";
+  position: absolute;
+  inset: 0 12px auto auto;
+  width: 72px;
+  height: 100%;
+  opacity: 0.22;
+  background-image: radial-gradient(circle, rgba(199, 181, 111, 0.72) 1.5px, transparent 1.6px);
+  background-size: 12px 12px;
+  pointer-events: none;
+}
+
+#choices button:hover {
+  filter: brightness(1.04);
 }
 
 @media (max-height: 740px) {
@@ -136,19 +219,34 @@ button:hover {
     font-size: 112px;
   }
 
+  #character.is-photo {
+    width: 100%;
+    height: 100%;
+  }
+
   #dialogueBox {
-    min-height: 250px;
-    padding: 18px 18px calc(20px + env(safe-area-inset-bottom));
+    min-height: 160px;
+    padding: 16px 16px 16px;
+  }
+
+  #musicControl {
+    bottom: calc(214px + env(safe-area-inset-bottom));
   }
 
   #text {
     font-size: 18px;
-    min-height: 88px;
+    min-height: 60px;
   }
 
-  button {
-    min-height: 46px;
-    padding: 11px 14px;
-    font-size: 16px;
+  #choices {
+    left: 70px;
+    top: 39%;
+    gap: 24px;
+  }
+
+  #choices button {
+    min-height: 52px;
+    padding: 11px 42px 11px 20px;
+    font-size: 18px;
   }
 }

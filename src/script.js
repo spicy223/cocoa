@@ -33,7 +33,7 @@ const scenes = {
   meetAlen: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
     character: "🧑‍🌾",
-    speaker: "艾倫",
+    speaker: "鄭琰",
     text: "迷路的小姐？這裡是可可島。外來者很少能來到這裡，除非……黃金可可果選中了妳。",
     choices: [
       {
@@ -52,8 +52,8 @@ const scenes = {
   meetNoah: {
     background: "linear-gradient(180deg, #315f7d, #172b3a)",
     character: "🎻",
-    speaker: "諾亞",
-    text: "妳的眼神像剛磨好的可可粉，有點苦，卻藏著香氣。別害怕，我叫諾亞。",
+    speaker: "蕭褐",
+    text: "妳的眼神像剛磨好的可可粉，有點苦，卻藏著香氣。別害怕，我叫蕭褐。",
     choices: [
       {
         text: "你說話好奇怪，但我不討厭。",
@@ -70,8 +70,8 @@ const scenes = {
 
   meetKai: {
     background: "linear-gradient(180deg, #60336f, #1d0d25)",
-    character: "🧙",
-    speaker: "凱伊",
+    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    speaker: "許騫譽",
     text: "別碰那碎片。黃金可可果不是祝福，而是封印。妳的到來，代表可可島的危機已經開始了。",
     choices: [
       {
@@ -90,30 +90,30 @@ const scenes = {
   alenGood: {
     background: "linear-gradient(180deg, #7b542f, #2a1508)",
     character: "🧑‍🌾",
-    speaker: "艾倫",
+    speaker: "鄭琰",
     text: "可靠嗎？呵……那我就負責保護妳吧。畢竟可可島的森林，夜晚可不怎麼溫柔。",
     choices: [
-      { text: "和艾倫一起前往村落", next: "commonTruth" }
+      { text: "和鄭琰一起前往村落", next: "commonTruth" }
     ]
   },
 
   noahGood: {
     background: "linear-gradient(180deg, #3d7191, #142838)",
     character: "🎻",
-    speaker: "諾亞",
+    speaker: "蕭褐",
     text: "不討厭就夠了。很多感情，一開始都只是『不討厭』。來吧，我帶妳去聽可可島的歌。",
     choices: [
-      { text: "跟著諾亞前往海邊祭壇", next: "commonTruth" }
+      { text: "跟著蕭褐前往海邊祭壇", next: "commonTruth" }
     ]
   },
 
   kaiGood: {
     background: "linear-gradient(180deg, #74438a, #1a0c22)",
-    character: "🧙",
-    speaker: "凱伊",
+    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    speaker: "許騫譽",
     text: "真相會讓人受傷。但如果妳還是想知道，我會陪妳走到最後。",
     choices: [
-      { text: "和凱伊調查黃金可可果", next: "commonTruth" }
+      { text: "和許騫譽調查黃金可可果", next: "commonTruth" }
     ]
   },
 
@@ -131,7 +131,7 @@ const scenes = {
     background: "linear-gradient(180deg, #8b5a2b, #241207)",
     character: "🍫",
     speaker: "三人",
-    text: "我們不是普通人。我們是可可豆的化身。艾倫代表濃郁與守護，諾亞代表香氣與記憶，凱伊代表苦味與真相。",
+    text: "我們不是普通人。我們是可可豆的化身。鄭琰代表濃郁與守護，蕭褐代表香氣與記憶，許騫譽代表苦味與真相。",
     choices: [
       { text: "我想守護這座島", next: "finalChoice" }
     ]
@@ -144,17 +144,17 @@ const scenes = {
     text: "若要修復可可島的秩序，妳必須選擇一位與妳心意相通的化身，共同喚醒黃金可可果真正的力量。",
     choices: [
       {
-        text: "選擇艾倫：守護與安定",
+        text: "選擇鄭琰：守護與安定",
         next: "endingAlen",
         effect: () => game.affection.alen += 3
       },
       {
-        text: "選擇諾亞：香氣與回憶",
+        text: "選擇蕭褐：香氣與回憶",
         next: "endingNoah",
         effect: () => game.affection.noah += 3
       },
       {
-        text: "選擇凱伊：苦味與真相",
+        text: "選擇許騫譽：苦味與真相",
         next: "endingKai",
         effect: () => game.affection.kai += 3
       }
@@ -164,7 +164,7 @@ const scenes = {
   endingAlen: {
     background: "linear-gradient(180deg, #b98245, #2b1607)",
     character: "🧑‍🌾💛",
-    speaker: "艾倫",
+    speaker: "鄭琰",
     text: "妳選擇了我，那我也會選擇妳。從今天開始，我不只守護可可島，也守護妳。",
     choices: [
       { text: "查看結局", next: "result" }
@@ -174,7 +174,7 @@ const scenes = {
   endingNoah: {
     background: "linear-gradient(180deg, #7fb3d5, #142838)",
     character: "🎻💛",
-    speaker: "諾亞",
+    speaker: "蕭褐",
     text: "妳的名字，會成為我最珍惜的旋律。即使有一天妳回到原本的世界，我也會記得妳的香氣。",
     choices: [
       { text: "查看結局", next: "result" }
@@ -183,8 +183,8 @@ const scenes = {
 
   endingKai: {
     background: "linear-gradient(180deg, #b573d1, #1a0c22)",
-    character: "🧙💛",
-    speaker: "凱伊",
+    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    speaker: "許騫譽",
     text: "妳沒有逃避真相。這樣的妳，比黃金可可果還耀眼。留下來吧，和我一起改寫可可島的命運。",
     choices: [
       { text: "查看結局", next: "result" }
@@ -215,9 +215,22 @@ function renderScene(sceneId) {
     scene.onEnter();
   }
 
-  document.getElementById("game").style.background = scene.background;
-  document.getElementById("character").textContent = scene.character;
-  document.getElementById("speaker").textContent = scene.speaker;
+  const gameEl = document.getElementById("game");
+  gameEl.style.background = scene.background;
+  const characterEl = document.getElementById("character");
+  characterEl.classList.toggle("is-photo", typeof scene.character === "object");
+  gameEl.classList.toggle("has-photo", typeof scene.character === "object");
+
+  if (typeof scene.character === "object") {
+    characterEl.textContent = scene.character.alt;
+    characterEl.style.backgroundImage = `url("${scene.character.image}")`;
+  } else {
+    characterEl.textContent = scene.character;
+    characterEl.style.backgroundImage = "";
+  }
+  const speakerEl = document.getElementById("speaker");
+  speakerEl.textContent = scene.speaker;
+  speakerEl.classList.toggle("is-hidden", scene.speaker === "旁白");
 
   if (sceneId !== "result") {
     document.getElementById("text").textContent = scene.text;
@@ -231,6 +244,8 @@ function renderScene(sceneId) {
     button.textContent = choice.text;
 
     button.onclick = () => {
+      startBgm();
+
       if (choice.effect) {
         choice.effect();
       }
@@ -257,11 +272,11 @@ function showResult() {
   let endingText = "";
 
   if (alen >= noah && alen >= kai) {
-    endingText = "結局：濃郁守護之戀。妳與艾倫一起重建可可森林，可可島重新恢復生機。";
+    endingText = "結局：濃郁守護之戀。妳與鄭琰一起重建可可森林，可可島重新恢復生機。";
   } else if (noah >= alen && noah >= kai) {
-    endingText = "結局：香氣記憶之戀。妳與諾亞喚醒島上的古老旋律，讓失落的記憶回到人們心中。";
+    endingText = "結局：香氣記憶之戀。妳與蕭褐喚醒島上的古老旋律，讓失落的記憶回到人們心中。";
   } else {
-    endingText = "結局：苦甜真相之戀。妳與凱伊揭開黃金可可果的封印，讓可可島迎來真正的自由。";
+    endingText = "結局：苦甜真相之戀。妳與許騫譽揭開黃金可可果的封印，讓可可島迎來真正的自由。";
   }
 
   document.getElementById("text").textContent = endingText;
@@ -273,11 +288,20 @@ function resetGame() {
   game.affection.kai = 0;
 }
 
+function startBgm() {
+  const bgm = document.getElementById("bgm");
+
+  if (bgm.paused) {
+    bgm.volume = 0.8;
+    bgm.play().catch(() => {});
+  }
+}
+
 function toggleMusic() {
   const bgm = document.getElementById("bgm");
 
   if (bgm.paused) {
-    bgm.volume = 0.4;
+    bgm.volume = 0.8;
     bgm.play().catch(() => {
       console.log("瀏覽器需要先點擊畫面才允許播放音樂");
     });
@@ -287,3 +311,6 @@ function toggleMusic() {
 }
 
 renderScene("intro");
+
+document.addEventListener("pointerdown", startBgm, { once: true });
+document.addEventListener("touchstart", startBgm, { once: true });
