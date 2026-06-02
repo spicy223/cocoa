@@ -2,193 +2,151 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  margin: 0;
-  background: #111;
-  color: #fff;
-  font-family: "Microsoft JhengHei", sans-serif;
-
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 !important;
+  width: 100% !important;
+  min-height: 100% !important;
+  background: #000 !important;
+  color: #fff !important;
+  font-family: "Microsoft JhengHei", sans-serif !important;
+  overflow: hidden !important;
 }
 
-/* 模擬手機外框 */
-#phoneFrame {
-  width: 390px;
-  height: 844px;
-  max-width: 100vw;
-  max-height: 100vh;
-
-  background: #000;
-  overflow: hidden;
-
-  position: relative;
-}
-
-/* 遊戲主畫面 */
+#phoneFrame,
 #game {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-
-  background: linear-gradient(180deg, #6b3f1d, #1d1008);
-  background-size: cover;
-  background-position: center;
+  width: 100vw !important;
+  min-height: 100vh !important;
+  height: 100vh !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-/* 標題 */
+#game {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
 #title {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  right: 90px;
-
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 1.3;
-
-  text-shadow: 2px 2px 5px #000;
-  z-index: 10;
+  position: absolute !important;
+  top: max(22px, env(safe-area-inset-top)) !important;
+  left: 20px !important;
+  right: 88px !important;
+  font-size: 28px !important;
+  font-weight: bold !important;
+  line-height: 1.3 !important;
+  text-shadow: 2px 2px 5px #000 !important;
+  z-index: 10 !important;
 }
 
-/* 好感度 */
 #status {
-  position: absolute;
-  top: 64px;
-  right: 14px;
-
-  background: rgba(0, 0, 0, 0.45);
-  padding: 8px 10px;
-  border-radius: 10px;
-
-  font-size: 12px;
-  line-height: 1.6;
-  z-index: 10;
+  position: absolute !important;
+  top: calc(max(22px, env(safe-area-inset-top)) + 58px) !important;
+  right: 16px !important;
+  background: rgba(0, 0, 0, 0.45) !important;
+  padding: 8px 10px !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
+  z-index: 10 !important;
 }
 
-/* 音樂按鈕 */
 #musicControl {
-  position: absolute;
-  top: 16px;
-  right: 14px;
-  z-index: 10;
+  position: absolute !important;
+  top: max(18px, env(safe-area-inset-top)) !important;
+  right: 16px !important;
+  z-index: 10 !important;
 }
 
 #musicControl button {
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  border-radius: 50%;
-  font-size: 18px;
+  width: 48px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 0 !important;
+  border-radius: 50% !important;
+  font-size: 20px !important;
 }
 
-/* 角色位置 */
 #character {
-  position: absolute;
-  left: 50%;
-  bottom: 270px;
-  transform: translateX(-50%);
-
-  font-size: 130px;
-  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.85);
-
-  z-index: 5;
+  position: absolute !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 315px !important;
+  transform: translateX(-50%) !important;
+  font-size: 140px !important;
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.85) !important;
+  z-index: 5 !important;
 }
 
-/* 對話框 */
 #dialogueBox {
-  width: 100%;
-  min-height: 260px;
-
-  background: rgba(31, 16, 7, 0.94);
-  border-top: 3px solid #d4af37;
-  padding: 18px 16px 22px;
-
-  z-index: 20;
+  width: 100% !important;
+  min-height: 300px !important;
+  background: rgba(31, 16, 7, 0.94) !important;
+  border-top: 3px solid #d4af37 !important;
+  padding: 22px 20px calc(26px + env(safe-area-inset-bottom)) !important;
+  z-index: 20 !important;
 }
 
-/* 說話者 */
 #speaker {
-  color: #ffd86b;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
+  color: #ffd86b !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  margin-bottom: 8px !important;
 }
 
-/* 對話文字 */
 #text {
-  font-size: 16px;
-  line-height: 1.7;
-  min-height: 82px;
+  font-size: 20px !important;
+  line-height: 1.7 !important;
+  min-height: 118px !important;
 }
 
-/* 選項區 */
 #choices {
-  margin-top: 12px;
-
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  margin-top: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
 }
 
-/* 所有按鈕 */
 button {
-  width: 100%;
-
-  background: #d4af37;
-  color: #2b1607;
-  border: none;
-
-  padding: 12px 14px;
-  border-radius: 999px;
-
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+  width: 100% !important;
+  min-height: 48px !important;
+  background: #d4af37 !important;
+  color: #2b1607 !important;
+  border: none !important;
+  padding: 13px 16px !important;
+  margin: 0 !important;
+  border-radius: 8px !important;
+  font-size: 17px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
 }
 
 button:hover {
-  background: #ffe28a;
+  background: #ffe28a !important;
 }
 
-/* 小螢幕修正 */
 @media (max-height: 740px) {
-  #phoneFrame {
-    height: 100vh;
-  }
-
   #character {
-    bottom: 235px;
-    font-size: 105px;
+    bottom: 255px !important;
+    font-size: 112px !important;
   }
 
   #dialogueBox {
-    min-height: 230px;
-    padding: 14px 14px 18px;
+    min-height: 250px !important;
+    padding: 18px 18px calc(20px + env(safe-area-inset-bottom)) !important;
   }
 
   #text {
-    font-size: 15px;
-    min-height: 68px;
+    font-size: 18px !important;
+    min-height: 88px !important;
   }
 
   button {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-}
-
-/* 真手機上滿版 */
-@media (max-width: 480px) {
-  #phoneFrame {
-    width: 100vw;
-    height: 100vh;
+    min-height: 46px !important;
+    padding: 11px 14px !important;
+    font-size: 16px !important;
   }
 }
