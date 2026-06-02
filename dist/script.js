@@ -1,5 +1,6 @@
 const game = {
   currentScene: "intro",
+  playerName: "",
   affection: {
     alen: 0,
     noah: 0,
@@ -9,13 +10,116 @@ const game = {
 
 const scenes = {
   intro: {
-    background: "linear-gradient(180deg, #9c6b2f, #2b1607)",
-    character: "🌳",
+    background: "url('../PIC/可可莊園.png') center / cover no-repeat",
+    character: "",
     speaker: "旁白",
-    text: "女主角在參觀可可莊園時，眼前忽然閃過一道金色光芒。一顆巨大的黃金可可果從樹上墜落，正中她的額頭。",
+    text: "身為可可愛好者的我，在參觀台灣可可莊園時，意外被一顆從樹上墜落的巨大黃金可可果擊中。",
     choices: [
-      { text: "睜開眼睛", next: "wakeUp" }
+      { text: "繼續", next: "introAwake" }
     ]
+  },
+
+  introAwake: {
+    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    character: "",
+    sparkles: true,
+    speaker: "旁白",
+    text: "當我再次睜開雙眼，映入眼簾的是一片金黃色的可可森林。",
+    choices: [
+      { text: "環顧四周", next: "introForest" }
+    ]
+  },
+
+  introForest: {
+    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    character: "",
+    sparkles: true,
+    speaker: "旁白",
+    text: "空氣中瀰漫著濃郁巧克力香氣，遠方矗立著一棵巨大的黃金可可樹。",
+    choices: [
+      { text: "走向黃金可可樹", next: "introVoice" }
+    ]
+  },
+
+  introVoice: {
+    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    character: "",
+    sparkles: true,
+    speaker: "旁白",
+    text: "就在此時，一道低沉溫柔的聲音從身後傳來。",
+    choices: [
+      { text: "繼續", next: "introUnknownVoice" }
+    ]
+  },
+
+  introUnknownVoice: {
+    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    character: "",
+    sparkles: true,
+    speaker: "？？？",
+    text: "「妳終於來了。」",
+    choices: [
+      { text: "轉身查看", next: "alenReveal" }
+    ]
+  },
+
+  alenReveal: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    speaker: "旁白",
+    text: "我轉身，看見一名身穿棕金色長袍的男子。\n\n他是——發酵魔術師【鄭琰】。",
+    choices: [
+      { text: "繼續", next: "nameRiteGaze" }
+    ]
+  },
+
+  nameRiteGaze: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    speaker: "旁白",
+    text: "但男子沒有立刻靠近，只是靜靜凝視著我，像是在確認某個久遠預言中的人。",
+    choices: [
+      { text: "繼續", next: "nameRiteMeaning" }
+    ]
+  },
+
+  nameRiteMeaning: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    speaker: "鄭琰",
+    text: "在這座森林裡，名字不是單純的稱呼。\n\n名字會決定妳與可可島之間的連結，也會讓這片森林記住妳的存在。",
+    choices: [
+      { text: "繼續", next: "nameRitePrompt" }
+    ]
+  },
+
+  nameRitePrompt: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    speaker: "鄭琰",
+    text: "所以，告訴我——\n\n妳的名字是？",
+    choices: [],
+    nameInput: true,
+    next: "nameRiteEcho"
+  },
+
+  nameRiteEcho: {
+    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    character: "",
+    sparkles: true,
+    speaker: "旁白",
+    text: "【玩家姓名】。\n\n當我說出這個名字的瞬間，腳邊的金色可可葉微微發亮。\n\n遠方那棵巨大的黃金可可樹，像是聽見了什麼似的，枝葉輕輕搖曳。",
+    choices: [
+      { text: "繼續", next: "nameRiteWelcome" }
+    ]
+  },
+
+  nameRiteWelcome: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    speaker: "鄭琰",
+    text: "鄭琰露出一抹溫柔的笑。\n\n「原來如此……」\n\n「那麼，從現在開始，可可島也會記住妳的名字。」\n\n「歡迎來到這裡，【玩家姓名】。」",
+    choices: []
   },
 
   wakeUp: {
@@ -32,20 +136,21 @@ const scenes = {
 
   meetAlen: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: "🧑‍🌾",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "迷路的小姐？這裡是可可島。外來者很少能來到這裡，除非……黃金可可果選中了妳。",
     choices: [
-      {
-        text: "你看起來很可靠，可以幫幫我嗎？",
-        next: "alenGood",
-        effect: () => game.affection.alen += 2
-      },
-      {
-        text: "黃金可可果？那是什麼？",
-        next: "commonTruth",
-        effect: () => game.affection.alen += 1
-      }
+      { text: "繼續", next: "prologueEnd" }
+    ]
+  },
+
+  prologueEnd: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    speaker: "旁白",
+    text: "黃金可可果的香氣仍在空氣裡流動，而我的命運，也在這一刻悄悄偏離了原本的軌道。",
+    choices: [
+      { text: "重新開始", next: "intro", effect: resetGame }
     ]
   },
 
@@ -89,7 +194,7 @@ const scenes = {
 
   alenGood: {
     background: "linear-gradient(180deg, #7b542f, #2a1508)",
-    character: "🧑‍🌾",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "可靠嗎？呵……那我就負責保護妳吧。畢竟可可島的森林，夜晚可不怎麼溫柔。",
     choices: [
@@ -163,7 +268,7 @@ const scenes = {
 
   endingAlen: {
     background: "linear-gradient(180deg, #b98245, #2b1607)",
-    character: "🧑‍🌾💛",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "妳選擇了我，那我也會選擇妳。從今天開始，我不只守護可可島，也守護妳。",
     choices: [
@@ -217,6 +322,7 @@ function renderScene(sceneId) {
 
   const gameEl = document.getElementById("game");
   gameEl.style.background = scene.background;
+  gameEl.classList.toggle("has-sparkles", Boolean(scene.sparkles));
   const characterEl = document.getElementById("character");
   characterEl.classList.toggle("is-photo", typeof scene.character === "object");
   gameEl.classList.toggle("has-photo", typeof scene.character === "object");
@@ -233,25 +339,73 @@ function renderScene(sceneId) {
   speakerEl.classList.toggle("is-hidden", scene.speaker === "旁白");
 
   if (sceneId !== "result") {
-    document.getElementById("text").textContent = scene.text;
+    document.getElementById("text").textContent = formatText(scene.text);
   }
 
   const choicesDiv = document.getElementById("choices");
+  const nameForm = document.getElementById("nameForm");
+  const playerNameInput = document.getElementById("playerNameInput");
   choicesDiv.innerHTML = "";
+  nameForm.classList.add("is-hidden");
+  playerNameInput.value = "";
+  gameEl.onclick = null;
+  gameEl.classList.remove("can-advance");
+  choicesDiv.classList.remove("is-hidden");
+
+  const advanceChoice = (choice) => {
+    startBgm();
+
+    if (choice.effect) {
+      choice.effect();
+    }
+
+    updateStatus();
+    renderScene(choice.next);
+  };
+
+  const canTapAdvance = scene.choices.length === 1 && !scene.choices[0].effect;
+
+  if (scene.nameInput) {
+    choicesDiv.classList.add("is-hidden");
+    nameForm.classList.remove("is-hidden");
+    nameForm.onsubmit = (event) => {
+      event.preventDefault();
+      const name = playerNameInput.value.trim();
+
+      if (!name) {
+        playerNameInput.focus();
+        return;
+      }
+
+      game.playerName = name;
+      startBgm();
+      renderScene(scene.next);
+    };
+    window.setTimeout(() => playerNameInput.focus(), 50);
+    updateStatus();
+    return;
+  }
+
+  if (canTapAdvance) {
+    choicesDiv.classList.add("is-hidden");
+    gameEl.classList.add("can-advance");
+    gameEl.onclick = (event) => {
+      if (event.target.closest("button, audio")) {
+        return;
+      }
+
+      advanceChoice(scene.choices[0]);
+    };
+    updateStatus();
+    return;
+  }
 
   scene.choices.forEach(choice => {
     const button = document.createElement("button");
     button.textContent = choice.text;
 
     button.onclick = () => {
-      startBgm();
-
-      if (choice.effect) {
-        choice.effect();
-      }
-
-      updateStatus();
-      renderScene(choice.next);
+      advanceChoice(choice);
     };
 
     choicesDiv.appendChild(button);
@@ -264,6 +418,10 @@ function updateStatus() {
   document.getElementById("alenScore").textContent = game.affection.alen;
   document.getElementById("noahScore").textContent = game.affection.noah;
   document.getElementById("kaiScore").textContent = game.affection.kai;
+}
+
+function formatText(text) {
+  return text.replaceAll("【玩家姓名】", game.playerName || "我");
 }
 
 function showResult() {
@@ -286,6 +444,7 @@ function resetGame() {
   game.affection.alen = 0;
   game.affection.noah = 0;
   game.affection.kai = 0;
+  game.playerName = "";
 }
 
 function startBgm() {
