@@ -119,7 +119,19 @@ const scenes = {
     character: { image: "../PIC/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "鄭琰露出一抹溫柔的笑。\n\n「原來如此……」\n\n「那麼，從現在開始，可可島也會記住妳的名字。」\n\n「歡迎來到這裡，【玩家姓名】。」",
-    choices: []
+    choices: [
+      { text: "結束", next: "fadeToBlack" }
+    ]
+  },
+
+  fadeToBlack: {
+    background: "linear-gradient(180deg, #6b4a2d, #241207)",
+    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    speaker: "",
+    text: "",
+    choices: [],
+    hideDialogue: true,
+    fadeOut: true
   },
 
   wakeUp: {
@@ -323,6 +335,7 @@ function renderScene(sceneId) {
   const gameEl = document.getElementById("game");
   gameEl.style.background = scene.background;
   gameEl.classList.toggle("has-sparkles", Boolean(scene.sparkles));
+  gameEl.classList.remove("is-fading-out");
   const characterEl = document.getElementById("character");
   characterEl.classList.toggle("is-photo", typeof scene.character === "object");
   gameEl.classList.toggle("has-photo", typeof scene.character === "object");
@@ -343,9 +356,11 @@ function renderScene(sceneId) {
   }
 
   const choicesDiv = document.getElementById("choices");
+  const dialogueBox = document.getElementById("dialogueBox");
   const nameForm = document.getElementById("nameForm");
   const playerNameInput = document.getElementById("playerNameInput");
   choicesDiv.innerHTML = "";
+  dialogueBox.classList.toggle("is-hidden", Boolean(scene.hideDialogue));
   nameForm.classList.add("is-hidden");
   playerNameInput.value = "";
   gameEl.onclick = null;
@@ -364,6 +379,15 @@ function renderScene(sceneId) {
   };
 
   const canTapAdvance = scene.choices.length === 1 && !scene.choices[0].effect;
+
+  if (scene.fadeOut) {
+    choicesDiv.classList.add("is-hidden");
+    window.setTimeout(() => {
+      gameEl.classList.add("is-fading-out");
+    }, 80);
+    updateStatus();
+    return;
+  }
 
   if (scene.nameInput) {
     choicesDiv.classList.add("is-hidden");
@@ -469,6 +493,8 @@ function toggleMusic() {
   }
 }
 
+window.game = game;
+window.renderScene = renderScene;
 renderScene("intro");
 
 document.addEventListener("pointerdown", startBgm, { once: true });

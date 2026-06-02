@@ -102,6 +102,20 @@ body {
   }
 }
 
+#fadeOverlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 80 !important;
+  background: #000 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 3.2s ease-in !important;
+}
+
+#game.is-fading-out #fadeOverlay {
+  opacity: 1 !important;
+}
+
 #title {
   display: none !important;
   position: absolute !important;
@@ -197,6 +211,11 @@ body {
 
 #speaker.is-hidden {
   display: none !important;
+}
+
+#dialogueBox.is-hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 #text {
