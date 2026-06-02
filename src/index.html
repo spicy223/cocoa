@@ -1,0 +1,418 @@
+
+<head>
+  <meta charset="UTF-8" />
+  <title>可可島的黃金戀曲</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(135deg, #3b2418, #8b5a2b);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #game {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    #title {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      font-size: 32px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    #character {
+      position: absolute;
+      bottom: 210px;
+      right: 80px;
+      font-size: 120px;
+      text-shadow: 4px 4px 10px #000;
+    }
+
+    #dialogueBox {
+      background: rgba(30, 15, 5, 0.88);
+      border-top: 3px solid #d4af37;
+      padding: 24px;
+      min-height: 170px;
+      box-sizing: border-box;
+    }
+
+    #speaker {
+      font-size: 22px;
+      color: #ffd86b;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    #text {
+      font-size: 20px;
+      line-height: 1.7;
+      min-height: 70px;
+    }
+
+    #choices {
+      margin-top: 16px;
+    }
+
+    button {
+      background: #d4af37;
+      color: #2b1607;
+      border: none;
+      padding: 10px 18px;
+      margin: 6px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #ffe28a;
+    }
+
+    #status {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      background: rgba(0,0,0,0.45);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    #musicControl {
+      position: absolute;
+      top: 120px;
+      right: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game">
+  <div id="title">可可島的黃金戀曲</div>
+
+  <div id="status">
+    艾倫好感度：<span id="alenScore">0</span><br>
+    諾亞好感度：<span id="noahScore">0</span><br>
+    凱伊好感度：<span id="kaiScore">0</span>
+  </div>
+
+  <div id="musicControl">
+    <button onclick="toggleMusic()">音樂 ON / OFF</button>
+  </div>
+
+  <div id="character">🍫</div>
+
+  <div id="dialogueBox">
+    <div id="speaker"></div>
+    <div id="text"></div>
+    <div id="choices"></div>
+  </div>
+</div>
+
+<audio id="bgm" loop>
+  <!-- 你可以替換成自己的音樂檔案，例如 music/cocoa_theme.mp3 -->
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c7f91c34b.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const game = {
+    currentScene: "intro",
+    affection: {
+      alen: 0,
+      noah: 0,
+      kai: 0
+    }
+  };
+
+  const scenes = {
+    intro: {
+      background: "linear-gradient(135deg, #5b3517, #d6a441)",
+      character: "🌳",
+      speaker: "旁白",
+      text: "女主角在參觀可可莊園時，眼前忽然閃過一道金色光芒。一顆巨大的黃金可可果從樹上墜落，正中她的額頭。",
+      choices: [
+        { text: "睜開眼睛", next: "wakeUp" }
+      ]
+    },
+
+    wakeUp: {
+      background: "linear-gradient(135deg, #2f4f3f, #c99b3b)",
+      character: "✨",
+      speaker: "女主角",
+      text: "這裡是……哪裡？空氣裡好像有可可的香氣，但這裡絕對不是剛才的莊園。",
+      choices: [
+        { text: "往森林深處走去", next: "meetAlen" },
+        { text: "沿著海岸尋找人影", next: "meetNoah" },
+        { text: "調查發光的可可果碎片", next: "meetKai" }
+      ]
+    },
+
+    meetAlen: {
+      background: "linear-gradient(135deg, #3b2a1a, #705438)",
+      character: "🧑‍🌾",
+      speaker: "艾倫",
+      text: "迷路的小姐？這裡是可可島。外來者很少能來到這裡，除非……黃金可可果選中了妳。",
+      choices: [
+        { 
+          text: "你看起來很可靠，可以幫幫我嗎？", 
+          next: "alenGood", 
+          effect: () => game.affection.alen += 2 
+        },
+        { 
+          text: "黃金可可果？那是什麼？", 
+          next: "commonTruth", 
+          effect: () => game.affection.alen += 1 
+        }
+      ]
+    },
+
+    meetNoah: {
+      background: "linear-gradient(135deg, #1f3f5b, #8fc9d9)",
+      character: "🎻",
+      speaker: "諾亞",
+      text: "妳的眼神像剛磨好的可可粉，有點苦，卻藏著香氣。別害怕，我叫諾亞。",
+      choices: [
+        { 
+          text: "你說話好奇怪，但我不討厭。", 
+          next: "noahGood", 
+          effect: () => game.affection.noah += 2 
+        },
+        { 
+          text: "你知道怎麼離開這座島嗎？", 
+          next: "commonTruth", 
+          effect: () => game.affection.noah += 1 
+        }
+      ]
+    },
+
+    meetKai: {
+      background: "linear-gradient(135deg, #382042, #b66ddf)",
+      character: "🧙",
+      speaker: "凱伊",
+      text: "別碰那碎片。黃金可可果不是祝福，而是封印。妳的到來，代表可可島的危機已經開始了。",
+      choices: [
+        { 
+          text: "封印？請告訴我真相。", 
+          next: "kaiGood", 
+          effect: () => game.affection.kai += 2 
+        },
+        { 
+          text: "你為什麼知道這麼多？", 
+          next: "commonTruth", 
+          effect: () => game.affection.kai += 1 
+        }
+      ]
+    },
+
+    alenGood: {
+      background: "linear-gradient(135deg, #4c321f, #b98245)",
+      character: "🧑‍🌾",
+      speaker: "艾倫",
+      text: "可靠嗎？呵……那我就負責保護妳吧。畢竟可可島的森林，夜晚可不怎麼溫柔。",
+      choices: [
+        { text: "和艾倫一起前往村落", next: "commonTruth" }
+      ]
+    },
+
+    noahGood: {
+      background: "linear-gradient(135deg, #23395b, #7fb3d5)",
+      character: "🎻",
+      speaker: "諾亞",
+      text: "不討厭就夠了。很多感情，一開始都只是『不討厭』。來吧，我帶妳去聽可可島的歌。",
+      choices: [
+        { text: "跟著諾亞前往海邊祭壇", next: "commonTruth" }
+      ]
+    },
+
+    kaiGood: {
+      background: "linear-gradient(135deg, #2a1535, #9255a2)",
+      character: "🧙",
+      speaker: "凱伊",
+      text: "真相會讓人受傷。但如果妳還是想知道，我會陪妳走到最後。",
+      choices: [
+        { text: "和凱伊調查黃金可可果", next: "commonTruth" }
+      ]
+    },
+
+    commonTruth: {
+      background: "linear-gradient(135deg, #1d1d1d, #8b6f2f)",
+      character: "🌕",
+      speaker: "旁白",
+      text: "夜幕降臨，可可島中央的黃金樹開始枯萎。三位男子同時出現在妳面前，他們的身影逐漸被可可香氣包圍。",
+      choices: [
+        { text: "詢問三人的真正身份", next: "identityReveal" }
+      ]
+    },
+
+    identityReveal: {
+      background: "linear-gradient(135deg, #5c4033, #d4af37)",
+      character: "🍫",
+      speaker: "三人",
+      text: "我們不是普通人。我們是可可豆的化身。艾倫代表濃郁與守護，諾亞代表香氣與記憶，凱伊代表苦味與真相。",
+      choices: [
+        { text: "我想守護這座島", next: "finalChoice" }
+      ]
+    },
+
+    finalChoice: {
+      background: "linear-gradient(135deg, #2f1b0c, #d4af37)",
+      character: "💛",
+      speaker: "黃金可可果",
+      text: "若要修復可可島的秩序，妳必須選擇一位與妳心意相通的化身，共同喚醒黃金可可果真正的力量。",
+      choices: [
+        { 
+          text: "選擇艾倫：守護與安定", 
+          next: "endingAlen",
+          effect: () => game.affection.alen += 3
+        },
+        { 
+          text: "選擇諾亞：香氣與回憶", 
+          next: "endingNoah",
+          effect: () => game.affection.noah += 3
+        },
+        { 
+          text: "選擇凱伊：苦味與真相", 
+          next: "endingKai",
+          effect: () => game.affection.kai += 3
+        }
+      ]
+    },
+
+    endingAlen: {
+      background: "linear-gradient(135deg, #4a2c17, #d19a52)",
+      character: "🧑‍🌾💛",
+      speaker: "艾倫",
+      text: "妳選擇了我，那我也會選擇妳。從今天開始，我不只守護可可島，也守護妳。",
+      choices: [
+        { text: "查看結局", next: "result" }
+      ]
+    },
+
+    endingNoah: {
+      background: "linear-gradient(135deg, #1f4e79, #aad8e6)",
+      character: "🎻💛",
+      speaker: "諾亞",
+      text: "妳的名字，會成為我最珍惜的旋律。即使有一天妳回到原本的世界，我也會記得妳的香氣。",
+      choices: [
+        { text: "查看結局", next: "result" }
+      ]
+    },
+
+    endingKai: {
+      background: "linear-gradient(135deg, #321047, #b573d1)",
+      character: "🧙💛",
+      speaker: "凱伊",
+      text: "妳沒有逃避真相。這樣的妳，比黃金可可果還耀眼。留下來吧，和我一起改寫可可島的命運。",
+      choices: [
+        { text: "查看結局", next: "result" }
+      ]
+    },
+
+    result: {
+      background: "linear-gradient(135deg, #1b1b1b, #d4af37)",
+      character: "🏝️",
+      speaker: "系統",
+      text: "",
+      choices: [
+        { text: "重新開始", next: "intro", effect: resetGame }
+      ],
+      onEnter: showResult
+    }
+  };
+
+  function renderScene(sceneId) {
+    const scene = scenes[sceneId];
+    game.currentScene = sceneId;
+
+    if (scene.onEnter) {
+      scene.onEnter();
+    }
+
+    document.getElementById("game").style.background = scene.background;
+    document.getElementById("character").textContent = scene.character;
+    document.getElementById("speaker").textContent = scene.speaker;
+
+    if (sceneId !== "result") {
+      document.getElementById("text").textContent = scene.text;
+    }
+
+    const choicesDiv = document.getElementById("choices");
+    choicesDiv.innerHTML = "";
+
+    scene.choices.forEach(choice => {
+      const button = document.createElement("button");
+      button.textContent = choice.text;
+
+      button.onclick = () => {
+        if (choice.effect) {
+          choice.effect();
+        }
+
+        updateStatus();
+        renderScene(choice.next);
+      };
+
+      choicesDiv.appendChild(button);
+    });
+
+    updateStatus();
+  }
+
+  function updateStatus() {
+    document.getElementById("alenScore").textContent = game.affection.alen;
+    document.getElementById("noahScore").textContent = game.affection.noah;
+    document.getElementById("kaiScore").textContent = game.affection.kai;
+  }
+
+  function showResult() {
+    const { alen, noah, kai } = game.affection;
+
+    let endingText = "";
+
+    if (alen >= noah && alen >= kai) {
+      endingText = "結局：濃郁守護之戀。妳與艾倫一起重建可可森林，可可島重新恢復生機。";
+    } else if (noah >= alen && noah >= kai) {
+      endingText = "結局：香氣記憶之戀。妳與諾亞喚醒島上的古老旋律，讓失落的記憶回到人們心中。";
+    } else {
+      endingText = "結局：苦甜真相之戀。妳與凱伊揭開黃金可可果的封印，讓可可島迎來真正的自由。";
+    }
+
+    document.getElementById("text").textContent = endingText;
+  }
+
+  function resetGame() {
+    game.affection.alen = 0;
+    game.affection.noah = 0;
+    game.affection.kai = 0;
+  }
+
+  function toggleMusic() {
+    const bgm = document.getElementById("bgm");
+
+    if (bgm.paused) {
+      bgm.volume = 0.4;
+      bgm.play();
+    } else {
+      bgm.pause();
+    }
+  }
+
+  renderScene("intro");
+</script>
+
+</body>
+</html>
