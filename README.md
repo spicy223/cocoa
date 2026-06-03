@@ -1,6 +1,8 @@
-# Untitled
+# 戀與可可豆
 
-A Pen created on CodePen.
+互動式可可島戀愛遊戲網頁。
 
-Original URL: [https://codepen.io/ypchnywt-the-looper/pen/yyVKLVL](https://codepen.io/ypchnywt-the-looper/pen/yyVKLVL).
+網站入口會先顯示標準字與背景圖片輪播，點擊畫面後進入遊戲。
 
+GitHub Pages:
+https://spicy223.github.io/cocoa/
