@@ -17,14 +17,18 @@
         <div class="loading-aura" aria-hidden="true"></div>
         <div class="loading-ring" aria-hidden="true"></div>
         <div class="loading-sparkles" aria-hidden="true"></div>
-        <img class="loading-logo" src="${LOGO_SRC}" alt="戀與可可豆">
+        <div class="logo-stage logo-stage-loading">
+          <img class="loading-logo" src="${LOGO_SRC}" alt="戀與可可豆">
+        </div>
       </div>
       <div id="splashScreen" class="entry-screen is-hidden" role="button" tabindex="0" aria-label="進入遊戲">
         <div class="entry-slideshow" aria-hidden="true">
           <div class="entry-slide is-visible"></div>
           <div class="entry-slide"></div>
         </div>
-        <img class="entry-logo" src="${LOGO_SRC}" alt="戀與可可豆">
+        <div class="logo-stage logo-stage-entry">
+          <img class="entry-logo" src="${LOGO_SRC}" alt="戀與可可豆">
+        </div>
         <div class="entry-hint">點擊畫面開始</div>
       </div>
     `;
