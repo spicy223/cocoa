@@ -178,62 +178,6 @@ body:not(.game-unlocked) #game {
   animation: loadingLogoGlow 1.8s ease-in-out infinite alternate !important;
 }
 
-.logo-stage {
-  position: relative !important;
-  z-index: 2 !important;
-  display: grid !important;
-  place-items: center !important;
-  width: min(430px, 84%) !important;
-  isolation: isolate !important;
-}
-
-.logo-stage-entry {
-  width: min(420px, 76%) !important;
-}
-
-.logo-stage img {
-  width: 100% !important;
-}
-
-.logo-stage::before,
-.logo-stage::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: -34% -18% !important;
-  z-index: -1 !important;
-  pointer-events: none !important;
-}
-
-.logo-stage::before {
-  background:
-    radial-gradient(circle at 50% 50%, rgba(255, 226, 138, 0.56), rgba(255, 226, 138, 0.18) 34%, transparent 62%),
-    conic-gradient(from 20deg, transparent, rgba(226, 178, 76, 0.32), transparent, rgba(255, 241, 192, 0.46), transparent) !important;
-  filter: blur(8px) !important;
-  opacity: 0.82 !important;
-  animation: logoHaloSpin 8s linear infinite, logoHaloPulse 2.6s ease-in-out infinite alternate !important;
-}
-
-.logo-stage::after {
-  z-index: 3 !important;
-  background:
-    linear-gradient(110deg, transparent 0 38%, rgba(255, 255, 255, 0.9) 46%, rgba(255, 225, 137, 0.62) 50%, transparent 59% 100%),
-    radial-gradient(circle, rgba(255, 248, 204, 0.95) 0 1.2px, transparent 1.8px),
-    radial-gradient(circle, rgba(215, 158, 54, 0.8) 0 1.5px, transparent 2.2px) !important;
-  background-size: 180% 100%, 120px 86px, 86px 112px !important;
-  background-position: -160% 0, 10% 16%, 88% 72% !important;
-  mix-blend-mode: screen !important;
-  opacity: 0.78 !important;
-  animation: logoShineSweep 3.2s ease-in-out infinite, logoSparkleDance 2.4s ease-in-out infinite alternate !important;
-}
-
-.logo-stage-loading .loading-logo,
-.logo-stage-entry .entry-logo {
-  filter:
-    drop-shadow(0 10px 22px rgba(116, 79, 28, 0.2))
-    drop-shadow(0 0 18px rgba(221, 178, 79, 0.3))
-    drop-shadow(0 0 2px rgba(255, 246, 205, 0.8)) !important;
-}
-
 #splashScreen {
   cursor: pointer !important;
 }
@@ -241,7 +185,7 @@ body:not(.game-unlocked) #game {
 .entry-logo {
   position: relative !important;
   z-index: 1 !important;
-  width: 100% !important;
+  width: min(420px, 76%) !important;
   height: auto !important;
   opacity: 0 !important;
   transform: translateY(14px) scale(0.98) !important;
@@ -315,38 +259,6 @@ body:not(.game-unlocked) #game {
 @keyframes ornamentFloat {
   to {
     transform: rotate(8deg) scale(1.02);
-  }
-}
-
-@keyframes logoHaloSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes logoHaloPulse {
-  to {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes logoShineSweep {
-  0%,
-  28% {
-    background-position: -160% 0, 10% 16%, 88% 72%;
-  }
-
-  62%,
-  100% {
-    background-position: 160% 0, 14% 12%, 84% 68%;
-  }
-}
-
-@keyframes logoSparkleDance {
-  to {
-    opacity: 0.48;
-    filter: blur(0.3px);
   }
 }
 
