@@ -27,9 +27,7 @@ body:not(.game-unlocked) #game {
   position: fixed !important;
   inset: 0 !important;
   z-index: 999 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  display: grid !important;
   place-items: center !important;
   background: #000 !important;
   color: #fff !important;
@@ -41,6 +39,7 @@ body:not(.game-unlocked) #game {
 }
 
 .entry-screen {
+  grid-area: 1 / 1 !important;
   position: relative !important;
   inset: auto !important;
   width: min(100vw, calc(100dvh * 9 / 16)) !important;
@@ -97,9 +96,10 @@ body:not(.game-unlocked) #game {
 }
 
 .loading-screen {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100vw !important;
+  position: relative !important;
+  inset: auto !important;
+  width: min(100vw, calc(100dvh * 9 / 16)) !important;
+  width: min(100vw, calc(100vh * 9 / 16)) !important;
   height: 100dvh !important;
   height: 100vh !important;
   z-index: 3 !important;
@@ -168,7 +168,7 @@ body:not(.game-unlocked) #game {
 .loading-logo {
   position: relative !important;
   z-index: 2 !important;
-  width: min(760px, 84vw) !important;
+  width: min(430px, 84%) !important;
   height: auto !important;
   filter:
     drop-shadow(0 10px 22px rgba(116, 79, 28, 0.2))
