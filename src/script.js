@@ -362,6 +362,33 @@ const scenes = {
   }
 };
 
+function extractImageUrl(background) {
+  const match = String(background || "").match(/url\(["']?([^"')]+)["']?\)/);
+  return match ? match[1] : "";
+}
+
+function preloadSceneImages() {
+  const urls = new Set();
+
+  Object.values(scenes).forEach((scene) => {
+    const backgroundUrl = extractImageUrl(scene.background);
+
+    if (backgroundUrl) {
+      urls.add(backgroundUrl);
+    }
+
+    if (typeof scene.character === "object" && scene.character.image) {
+      urls.add(scene.character.image);
+    }
+  });
+
+  urls.forEach((url) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = url;
+  });
+}
+
 function renderScene(sceneId) {
   const scene = scenes[sceneId];
   game.currentScene = sceneId;
@@ -371,7 +398,6 @@ function renderScene(sceneId) {
   }
 
   const gameEl = document.getElementById("game");
-  gameEl.style.background = scene.background;
   gameEl.classList.toggle("has-sparkles", Boolean(scene.sparkles));
   gameEl.classList.remove("is-fading-out");
   const characterEl = document.getElementById("character");
@@ -379,9 +405,11 @@ function renderScene(sceneId) {
   gameEl.classList.toggle("has-photo", typeof scene.character === "object");
 
   if (typeof scene.character === "object") {
+    gameEl.style.background = `url("${scene.character.image}") center top / cover no-repeat`;
     characterEl.textContent = scene.character.alt;
     characterEl.style.backgroundImage = `url("${scene.character.image}")`;
   } else {
+    gameEl.style.background = scene.background;
     characterEl.textContent = scene.character;
     characterEl.style.backgroundImage = "";
   }
@@ -533,6 +561,7 @@ function toggleMusic() {
 
 window.game = game;
 window.renderScene = renderScene;
+preloadSceneImages();
 renderScene("intro");
 
 document.addEventListener("pointerdown", startBgm, { once: true });

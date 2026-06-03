@@ -1,6 +1,21 @@
 (function () {
   const LOGO_SRC = "../pic/戀與可可豆 標準字-02.png";
   const SLIDES = ["../pic/04.png", "../pic/05.png", "../pic/06.png"];
+  const PRELOAD_IMAGES = [
+    LOGO_SRC,
+    ...SLIDES,
+    "../pic/02.png",
+    "../pic/03.png",
+    "../pic/可可莊園.png",
+    "../pic/黃金可可.png",
+    "../pic/取名.png"
+  ];
+
+  PRELOAD_IMAGES.forEach((src) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = src;
+  });
 
   function setupEntryFlow() {
     if (document.getElementById("entryLayer")) {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Untitled</title>
     <link rel="stylesheet" href="./style.css?v=35">
-    <script src="./entry.js?v=10" defer></script>
+    <script src="./entry.js?v=11" defer></script>
 
   </head>
     
@@ -468,6 +468,33 @@
     }
   };
 
+  function extractImageUrl(background) {
+    const match = String(background || "").match(/url\(["']?([^"')]+)["']?\)/);
+    return match ? match[1] : "";
+  }
+
+  function preloadSceneImages() {
+    const urls = new Set();
+
+    Object.values(scenes).forEach((scene) => {
+      const backgroundUrl = extractImageUrl(scene.background);
+
+      if (backgroundUrl) {
+        urls.add(backgroundUrl);
+      }
+
+      if (typeof scene.character === "object" && scene.character.image) {
+        urls.add(scene.character.image);
+      }
+    });
+
+    urls.forEach((url) => {
+      const image = new Image();
+      image.decoding = "async";
+      image.src = url;
+    });
+  }
+
   function renderScene(sceneId) {
     const scene = scenes[sceneId];
     game.currentScene = sceneId;
@@ -477,7 +504,6 @@
     }
 
     const gameEl = document.getElementById("game");
-    gameEl.style.background = scene.background;
     gameEl.classList.toggle("has-sparkles", Boolean(scene.sparkles));
     gameEl.classList.remove("is-fading-out");
     const characterEl = document.getElementById("character");
@@ -485,9 +511,11 @@
     gameEl.classList.toggle("has-photo", typeof scene.character === "object");
 
     if (typeof scene.character === "object") {
+      gameEl.style.background = `url("${scene.character.image}") center top / cover no-repeat`;
       characterEl.textContent = scene.character.alt;
       characterEl.style.backgroundImage = `url("${scene.character.image}")`;
     } else {
+      gameEl.style.background = scene.background;
       characterEl.textContent = scene.character;
       characterEl.style.backgroundImage = "";
     }
@@ -637,6 +665,7 @@
 
   window.game = game;
   window.renderScene = renderScene;
+  preloadSceneImages();
   renderScene("intro");
 
   document.addEventListener("pointerdown", startBgm, { once: true });
@@ -645,7 +674,7 @@
 
 </body>
 </html>
-    <script src="./script.js?v=28"></script>
+    <script src="./script.js?v=29"></script>
 
   </body>
   
