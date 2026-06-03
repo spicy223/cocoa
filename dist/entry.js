@@ -13,7 +13,13 @@
     layer.id = "entryLayer";
     layer.setAttribute("aria-label", "登入入口");
     layer.innerHTML = `
-      <div id="splashScreen" class="entry-screen" role="button" tabindex="0" aria-label="進入遊戲">
+      <div id="loadingScreen" class="entry-screen loading-screen" aria-label="載入中">
+        <div class="loading-aura" aria-hidden="true"></div>
+        <div class="loading-ring" aria-hidden="true"></div>
+        <div class="loading-sparkles" aria-hidden="true"></div>
+        <img class="loading-logo" src="${LOGO_SRC}" alt="戀與可可豆">
+      </div>
+      <div id="splashScreen" class="entry-screen is-hidden" role="button" tabindex="0" aria-label="進入遊戲">
         <div class="entry-slideshow" aria-hidden="true">
           <div class="entry-slide is-visible"></div>
           <div class="entry-slide"></div>
@@ -25,6 +31,7 @@
 
     document.body.prepend(layer);
 
+    const loadingScreen = document.getElementById("loadingScreen");
     const splashScreen = document.getElementById("splashScreen");
     const slideEls = Array.from(document.querySelectorAll(".entry-slide"));
     let currentSlide = 0;
@@ -44,6 +51,12 @@
       currentEl.classList.remove("is-visible");
       visibleSlide = nextVisibleSlide;
     }, 3600);
+
+    window.setTimeout(() => {
+      loadingScreen.classList.add("is-hidden");
+      splashScreen.classList.remove("is-hidden");
+      splashScreen.focus();
+    }, 2400);
 
     const enterGame = () => {
       window.clearInterval(slideTimer);
