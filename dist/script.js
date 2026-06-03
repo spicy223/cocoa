@@ -534,7 +534,6 @@ function toggleMusic() {
 window.game = game;
 window.renderScene = renderScene;
 renderScene("intro");
-setupEntryFlow();
 
 document.addEventListener("pointerdown", startBgm, { once: true });
 document.addEventListener("touchstart", startBgm, { once: true });

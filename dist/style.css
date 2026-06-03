@@ -23,8 +23,8 @@ body:not(.game-unlocked) #game {
   z-index: 999 !important;
   display: grid !important;
   place-items: center !important;
-  background: #fff !important;
-  color: #35261d !important;
+  background: #000 !important;
+  color: #fff !important;
   font-family: "Microsoft JhengHei", sans-serif !important;
 }
 
@@ -42,6 +42,42 @@ body:not(.game-unlocked) #game {
   transition: opacity 0.45s ease, transform 0.45s ease !important;
 }
 
+.entry-slideshow,
+.entry-slide {
+  position: absolute !important;
+  inset: 0 !important;
+}
+
+.entry-slideshow {
+  z-index: 0 !important;
+  overflow: hidden !important;
+  background: #000 !important;
+}
+
+.entry-slide {
+  background-position: center !important;
+  background-size: cover !important;
+  opacity: 0 !important;
+  transform: scale(1.02) !important;
+  transition: opacity 1.4s ease-in-out, transform 4.2s ease !important;
+  will-change: opacity, transform !important;
+}
+
+.entry-slide.is-visible {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+.entry-slideshow::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.28)),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.16)) !important;
+  pointer-events: none !important;
+}
+
 .entry-screen.is-hidden {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -53,6 +89,8 @@ body:not(.game-unlocked) #game {
 }
 
 .entry-logo {
+  position: relative !important;
+  z-index: 1 !important;
   width: min(520px, 78vw) !important;
   height: auto !important;
   opacity: 0 !important;
@@ -62,10 +100,12 @@ body:not(.game-unlocked) #game {
 
 .entry-hint {
   position: absolute !important;
+  z-index: 1 !important;
   bottom: calc(48px + env(safe-area-inset-bottom)) !important;
-  color: rgba(70, 52, 38, 0.52) !important;
+  color: rgba(255, 255, 255, 0.78) !important;
   font-size: 15px !important;
   letter-spacing: 0 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55) !important;
 }
 
 @keyframes logoReveal {
