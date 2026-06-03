@@ -13,6 +13,135 @@ body {
   overflow: hidden;
 }
 
+body:not(.game-unlocked) #game {
+  visibility: hidden;
+}
+
+#entryLayer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  color: #35261d;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+
+#entryLayer.is-hidden {
+  display: none;
+}
+
+.entry-screen {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  opacity: 1;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.entry-screen.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+#splashScreen {
+  cursor: pointer;
+}
+
+.entry-logo {
+  width: min(520px, 78vw);
+  height: auto;
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  animation: logoReveal 2.2s ease forwards;
+}
+
+.entry-hint {
+  position: absolute;
+  bottom: calc(48px + env(safe-area-inset-bottom));
+  color: rgba(70, 52, 38, 0.52);
+  font-size: 15px;
+  letter-spacing: 0;
+}
+
+@keyframes logoReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-panel {
+  width: min(360px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+}
+
+.login-panel .entry-logo {
+  align-self: center;
+  width: min(280px, 70vw);
+  margin-bottom: 14px;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  color: #5a4638;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.login-field input {
+  width: 100%;
+  height: 48px;
+  padding: 10px 14px;
+  border: 1px solid #d8cab8;
+  border-radius: 6px;
+  background: #fff;
+  color: #35261d;
+  font-size: 16px;
+  outline: none;
+}
+
+.login-field input:focus {
+  border-color: #a98455;
+  box-shadow: 0 0 0 3px rgba(169, 132, 85, 0.18);
+}
+
+.login-submit {
+  height: 48px;
+  margin: 4px 0 0;
+  border: 0;
+  border-radius: 6px;
+  background: #6f4b2e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.login-submit:hover {
+  background: #805a39;
+}
+
+.login-note {
+  margin: 0;
+  color: rgba(70, 52, 38, 0.55);
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 #phoneFrame {
   width: 100vw;
   height: 100vh;
