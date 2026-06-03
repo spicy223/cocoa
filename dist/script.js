@@ -10,7 +10,7 @@ const game = {
 
 const scenes = {
   intro: {
-    background: "url('../PIC/可可莊園.png') center / cover no-repeat",
+    background: "url('../pic/可可莊園.png') center / cover no-repeat",
     character: "",
     speaker: "旁白",
     text: "身為可可愛好者的我，在參觀台灣可可莊園時，意外被一顆從樹上墜落的巨大黃金可可果擊中。",
@@ -20,7 +20,7 @@ const scenes = {
   },
 
   introAwake: {
-    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    background: "url('../pic/黃金可可.png') center / cover no-repeat",
     character: "",
     sparkles: true,
     speaker: "旁白",
@@ -31,7 +31,7 @@ const scenes = {
   },
 
   introForest: {
-    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    background: "url('../pic/黃金可可.png') center / cover no-repeat",
     character: "",
     sparkles: true,
     speaker: "旁白",
@@ -42,7 +42,7 @@ const scenes = {
   },
 
   introVoice: {
-    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    background: "url('../pic/黃金可可.png') center / cover no-repeat",
     character: "",
     sparkles: true,
     speaker: "旁白",
@@ -53,7 +53,7 @@ const scenes = {
   },
 
   introUnknownVoice: {
-    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    background: "url('../pic/黃金可可.png') center / cover no-repeat",
     character: "",
     sparkles: true,
     speaker: "？？？",
@@ -65,7 +65,7 @@ const scenes = {
 
   alenReveal: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    character: { image: "../pic/02.png", alt: "鄭琰" },
     speaker: "旁白",
     text: "我轉身，看見一名身穿棕金色長袍的男子。\n\n他是——發酵魔術師【鄭琰】。",
     choices: [
@@ -75,7 +75,7 @@ const scenes = {
 
   nameRiteGaze: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    character: { image: "../pic/02.png", alt: "鄭琰" },
     speaker: "旁白",
     text: "但男子沒有立刻靠近，只是靜靜凝視著我，像是在確認某個久遠預言中的人。",
     choices: [
@@ -85,7 +85,7 @@ const scenes = {
 
   nameRiteMeaning: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    character: { image: "../pic/02.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "在這座森林裡，名字不是單純的稱呼。\n\n名字會決定妳與可可島之間的連結，也會讓這片森林記住妳的存在。",
     choices: [
@@ -95,7 +95,7 @@ const scenes = {
 
   nameRitePrompt: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/02.png", alt: "鄭琰" },
+    character: { image: "../pic/02.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "所以，告訴我——\n\n妳的名字是？",
     choices: [],
@@ -104,7 +104,7 @@ const scenes = {
   },
 
   nameRiteEcho: {
-    background: "url('../PIC/黃金可可.png') center / cover no-repeat",
+    background: "url('../pic/黃金可可.png') center / cover no-repeat",
     character: "",
     sparkles: true,
     speaker: "旁白",
@@ -116,7 +116,7 @@ const scenes = {
 
   nameRiteWelcome: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "鄭琰露出一抹溫柔的笑。\n\n「原來如此……」\n\n「那麼，從現在開始，可可島也會記住妳的名字。」\n\n「歡迎來到這裡，【玩家姓名】。」",
     choices: [
@@ -126,7 +126,7 @@ const scenes = {
 
   fadeToBlack: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "",
     text: "",
     choices: [],
@@ -148,7 +148,7 @@ const scenes = {
 
   meetAlen: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "迷路的小姐？這裡是可可島。外來者很少能來到這裡，除非……黃金可可果選中了妳。",
     choices: [
@@ -158,7 +158,7 @@ const scenes = {
 
   prologueEnd: {
     background: "linear-gradient(180deg, #6b4a2d, #241207)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "旁白",
     text: "黃金可可果的香氣仍在空氣裡流動，而我的命運，也在這一刻悄悄偏離了原本的軌道。",
     choices: [
@@ -187,7 +187,7 @@ const scenes = {
 
   meetKai: {
     background: "linear-gradient(180deg, #60336f, #1d0d25)",
-    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    character: { image: "../pic/02.png", alt: "許騫譽" },
     speaker: "許騫譽",
     text: "別碰那碎片。黃金可可果不是祝福，而是封印。妳的到來，代表可可島的危機已經開始了。",
     choices: [
@@ -206,7 +206,7 @@ const scenes = {
 
   alenGood: {
     background: "linear-gradient(180deg, #7b542f, #2a1508)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "可靠嗎？呵……那我就負責保護妳吧。畢竟可可島的森林，夜晚可不怎麼溫柔。",
     choices: [
@@ -226,7 +226,7 @@ const scenes = {
 
   kaiGood: {
     background: "linear-gradient(180deg, #74438a, #1a0c22)",
-    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    character: { image: "../pic/02.png", alt: "許騫譽" },
     speaker: "許騫譽",
     text: "真相會讓人受傷。但如果妳還是想知道，我會陪妳走到最後。",
     choices: [
@@ -280,7 +280,7 @@ const scenes = {
 
   endingAlen: {
     background: "linear-gradient(180deg, #b98245, #2b1607)",
-    character: { image: "../PIC/03.png", alt: "鄭琰" },
+    character: { image: "../pic/03.png", alt: "鄭琰" },
     speaker: "鄭琰",
     text: "妳選擇了我，那我也會選擇妳。從今天開始，我不只守護可可島，也守護妳。",
     choices: [
@@ -300,7 +300,7 @@ const scenes = {
 
   endingKai: {
     background: "linear-gradient(180deg, #b573d1, #1a0c22)",
-    character: { image: "../PIC/01.jpg", alt: "許騫譽" },
+    character: { image: "../pic/02.png", alt: "許騫譽" },
     speaker: "許騫譽",
     text: "妳沒有逃避真相。這樣的妳，比黃金可可果還耀眼。留下來吧，和我一起改寫可可島的命運。",
     choices: [

@@ -257,7 +257,7 @@ body {
   z-index: 30 !important;
   min-height: 0 !important;
   padding: 56px 26px 18px !important;
-  background: url("../PIC/取名.png") center / contain no-repeat !important;
+  background: url("../pic/取名.png") center / contain no-repeat !important;
 }
 
 #nameForm.is-hidden {
