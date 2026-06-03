@@ -56,7 +56,7 @@
       loadingScreen.classList.add("is-hidden");
       splashScreen.classList.remove("is-hidden");
       splashScreen.focus();
-    }, 2400);
+    }, 4200);
 
     const enterGame = () => {
       window.clearInterval(slideTimer);

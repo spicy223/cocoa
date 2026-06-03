@@ -97,10 +97,15 @@ body:not(.game-unlocked) #game {
 }
 
 .loading-screen {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  height: 100vh !important;
   z-index: 3 !important;
   overflow: hidden !important;
   background:
-    radial-gradient(circle at center, rgba(255, 246, 218, 0.96) 0 18%, rgba(255, 255, 255, 0.96) 48%, #fff 100%) !important;
+    radial-gradient(circle at center, rgba(255, 241, 199, 0.95) 0 16%, rgba(255, 255, 255, 0.98) 46%, #fff 100%) !important;
   color: #7c5a2f !important;
   transition: opacity 0.8s ease, transform 0.8s ease !important;
 }
@@ -112,6 +117,7 @@ body:not(.game-unlocked) #game {
   inset: 9% !important;
   border: 1px solid rgba(199, 157, 82, 0.28) !important;
   border-radius: 999px !important;
+  box-shadow: 0 0 40px rgba(210, 168, 80, 0.12) !important;
   transform: rotate(-8deg) !important;
   animation: ornamentFloat 3.8s ease-in-out infinite alternate !important;
 }
@@ -125,19 +131,19 @@ body:not(.game-unlocked) #game {
 
 .loading-aura {
   position: absolute !important;
-  width: min(76%, 420px) !important;
+  width: min(82vw, 560px) !important;
   aspect-ratio: 1 !important;
   border-radius: 50% !important;
   background:
     radial-gradient(circle, rgba(255, 219, 126, 0.42), rgba(255, 255, 255, 0) 62%),
     conic-gradient(from 0deg, rgba(204, 154, 58, 0), rgba(217, 174, 82, 0.38), rgba(204, 154, 58, 0)) !important;
-  filter: blur(3px) !important;
+  filter: blur(2px) !important;
   animation: auraSpin 6s linear infinite, auraPulse 2.4s ease-in-out infinite alternate !important;
 }
 
 .loading-ring {
   position: absolute !important;
-  width: min(64%, 340px) !important;
+  width: min(68vw, 430px) !important;
   aspect-ratio: 1 !important;
   border-radius: 50% !important;
   border: 1px solid rgba(178, 130, 44, 0.32) !important;
@@ -162,7 +168,7 @@ body:not(.game-unlocked) #game {
 .loading-logo {
   position: relative !important;
   z-index: 2 !important;
-  width: min(430px, 78%) !important;
+  width: min(520px, 72vw) !important;
   height: auto !important;
   filter:
     drop-shadow(0 10px 22px rgba(116, 79, 28, 0.2))

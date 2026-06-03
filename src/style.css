@@ -97,10 +97,15 @@ body:not(.game-unlocked) #game {
 }
 
 .loading-screen {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  height: 100vh;
   z-index: 3;
   overflow: hidden;
   background:
-    radial-gradient(circle at center, rgba(255, 246, 218, 0.96) 0 18%, rgba(255, 255, 255, 0.96) 48%, #fff 100%);
+    radial-gradient(circle at center, rgba(255, 241, 199, 0.95) 0 16%, rgba(255, 255, 255, 0.98) 46%, #fff 100%);
   color: #7c5a2f;
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
@@ -112,6 +117,7 @@ body:not(.game-unlocked) #game {
   inset: 9%;
   border: 1px solid rgba(199, 157, 82, 0.28);
   border-radius: 999px;
+  box-shadow: 0 0 40px rgba(210, 168, 80, 0.12);
   transform: rotate(-8deg);
   animation: ornamentFloat 3.8s ease-in-out infinite alternate;
 }
@@ -125,19 +131,19 @@ body:not(.game-unlocked) #game {
 
 .loading-aura {
   position: absolute;
-  width: min(76%, 420px);
+  width: min(82vw, 560px);
   aspect-ratio: 1;
   border-radius: 50%;
   background:
     radial-gradient(circle, rgba(255, 219, 126, 0.42), rgba(255, 255, 255, 0) 62%),
     conic-gradient(from 0deg, rgba(204, 154, 58, 0), rgba(217, 174, 82, 0.38), rgba(204, 154, 58, 0));
-  filter: blur(3px);
+  filter: blur(2px);
   animation: auraSpin 6s linear infinite, auraPulse 2.4s ease-in-out infinite alternate;
 }
 
 .loading-ring {
   position: absolute;
-  width: min(64%, 340px);
+  width: min(68vw, 430px);
   aspect-ratio: 1;
   border-radius: 50%;
   border: 1px solid rgba(178, 130, 44, 0.32);
@@ -162,7 +168,7 @@ body:not(.game-unlocked) #game {
 .loading-logo {
   position: relative;
   z-index: 2;
-  width: min(430px, 78%);
+  width: min(520px, 72vw);
   height: auto;
   filter:
     drop-shadow(0 10px 22px rgba(116, 79, 28, 0.2))
