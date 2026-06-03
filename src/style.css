@@ -13,6 +13,12 @@ body {
   overflow: hidden;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 body:not(.game-unlocked) #game {
   visibility: hidden;
 }
@@ -21,7 +27,9 @@ body:not(.game-unlocked) #game {
   position: fixed;
   inset: 0;
   z-index: 999;
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   place-items: center;
   background: #000;
   color: #fff;
@@ -33,8 +41,12 @@ body:not(.game-unlocked) #game {
 }
 
 .entry-screen {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  inset: auto;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  width: min(100vw, calc(100vh * 9 / 16));
+  height: 100dvh;
+  height: 100vh;
   display: grid;
   place-items: center;
   padding: 32px;
@@ -91,7 +103,7 @@ body:not(.game-unlocked) #game {
 .entry-logo {
   position: relative;
   z-index: 1;
-  width: min(520px, 78vw);
+  width: min(420px, 76%);
   height: auto;
   opacity: 0;
   transform: translateY(14px) scale(0.98);
@@ -183,7 +195,9 @@ body:not(.game-unlocked) #game {
 }
 
 #phoneFrame {
-  width: 100vw;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  width: min(100vw, calc(100vh * 9 / 16));
+  height: 100dvh;
   height: 100vh;
   position: relative;
   overflow: hidden;
@@ -191,8 +205,11 @@ body:not(.game-unlocked) #game {
 }
 
 #game {
-  width: 100%;
+  width: min(100vw, calc(100dvh * 9 / 16));
+  width: min(100vw, calc(100vh * 9 / 16));
   min-height: 100vh;
+  height: 100dvh;
+  height: 100vh;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -209,7 +226,7 @@ body:not(.game-unlocked) #game {
 
 #game.has-photo {
   background-size: cover;
-  background-position: center;
+  background-position: center top;
 }
 
 #sparkles {
@@ -353,7 +370,7 @@ body:not(.game-unlocked) #game {
   transform: none;
   border-radius: 0;
   background-size: cover;
-  background-position: center 18%;
+  background-position: center top;
   box-shadow: none;
   font-size: 0;
   text-shadow: none;

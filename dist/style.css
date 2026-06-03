@@ -13,6 +13,12 @@ body {
   overflow: hidden !important;
 }
 
+body {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 body:not(.game-unlocked) #game {
   visibility: hidden !important;
 }
@@ -21,7 +27,9 @@ body:not(.game-unlocked) #game {
   position: fixed !important;
   inset: 0 !important;
   z-index: 999 !important;
-  display: grid !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   place-items: center !important;
   background: #000 !important;
   color: #fff !important;
@@ -33,8 +41,12 @@ body:not(.game-unlocked) #game {
 }
 
 .entry-screen {
-  position: absolute !important;
-  inset: 0 !important;
+  position: relative !important;
+  inset: auto !important;
+  width: min(100vw, calc(100dvh * 9 / 16)) !important;
+  width: min(100vw, calc(100vh * 9 / 16)) !important;
+  height: 100dvh !important;
+  height: 100vh !important;
   display: grid !important;
   place-items: center !important;
   padding: 32px !important;
@@ -91,7 +103,7 @@ body:not(.game-unlocked) #game {
 .entry-logo {
   position: relative !important;
   z-index: 1 !important;
-  width: min(520px, 78vw) !important;
+  width: min(420px, 76%) !important;
   height: auto !important;
   opacity: 0 !important;
   transform: translateY(14px) scale(0.98) !important;
@@ -184,8 +196,10 @@ body:not(.game-unlocked) #game {
 
 #phoneFrame,
 #game {
-  width: 100vw !important;
+  width: min(100vw, calc(100dvh * 9 / 16)) !important;
+  width: min(100vw, calc(100vh * 9 / 16)) !important;
   min-height: 100vh !important;
+  height: 100dvh !important;
   height: 100vh !important;
   position: relative !important;
   overflow: hidden !important;
@@ -205,7 +219,7 @@ body:not(.game-unlocked) #game {
 
 #game.has-photo {
   background-size: cover !important;
-  background-position: center !important;
+  background-position: center top !important;
 }
 
 #sparkles {
@@ -350,7 +364,7 @@ body:not(.game-unlocked) #game {
   transform: none !important;
   border-radius: 0 !important;
   background-size: cover !important;
-  background-position: center 18% !important;
+  background-position: center top !important;
   box-shadow: none !important;
   font-size: 0 !important;
   text-shadow: none !important;
